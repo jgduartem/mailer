@@ -3,13 +3,14 @@ require('dotenv').config();
 const cors = require('cors');
 const nodemailer = require('nodemailer')
 const bodyParser = require('body-parser')
+const helmet = require('helmet')
 const port = process.env.PORT || 3000
 
 const app = express()
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 app.use(cors({origin: true}))
-
+app.use(helmet())
 app.post('/api', (req, res) => {
     const {body} = req;
     const isValidMessage = body.message && body.to && body.subject
