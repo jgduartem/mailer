@@ -12,6 +12,7 @@ app.use(bodyParser.json())
 app.use(cors({origin: true}))
 app.use(helmet())
 app.post('/api', (req, res) => {
+    console.log(req.body)
     const {body} = req;
     const isValidMessage = body.message && body.to && body.subject
     if(!isValidMessage){
